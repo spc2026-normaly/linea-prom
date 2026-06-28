@@ -19,7 +19,7 @@
 <body>
 
   <!-- Minimalist Sticky Header -->
-  <header id="header">
+  <header id="header" class="border-grid">
     <div class="container header-container">
       <a href="#" class="logo" id="logo-link">
         <span class="logo-text">Linea</span>
@@ -39,7 +39,7 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero-section" id="hero">
+  <section class="hero-section border-grid" id="hero">
     <div class="container hero-container">
       <div class="hero-content">
         <div class="badge" id="hero-badge">AI-Powered Factory Automation</div>
@@ -65,7 +65,7 @@
   </section>
 
   <!-- Business Value & Intro Section -->
-  <section class="about-section" id="about">
+  <section class="about-section border-grid" id="about">
     <div class="container">
       <div class="about-grid">
         <div class="about-text">
@@ -97,7 +97,7 @@
   </section>
 
   <!-- Key Features Grid (Towards.co.kr style side-by-side scrolling) -->
-  <section class="features-section" id="features">
+  <section class="features-section border-grid" id="features">
     <div class="container features-sticky-container">
       <!-- Left Column: Sticky Title -->
       <div class="features-left-col">
@@ -192,7 +192,7 @@
   </section>
 
   <!-- Interactive Live Simulator Section -->
-  <section class="simulator-section" id="simulator">
+  <section class="simulator-section border-grid" id="simulator">
     <div class="container">
       <div class="section-header">
         <span class="badge">Interactive Experience</span>
@@ -228,7 +228,7 @@
           
           <div class="simulator-screen-content">
             
-            <!-- Tab Content 1: Schedule Generator Simulator -->
+            <!-- Tab Content 1: Schedule Generator Simulator (Dynamic Timeline Grid) -->
             <div class="sim-content-pane active" id="schedule-content">
               <div class="pane-split">
                 <div class="pane-desc">
@@ -236,15 +236,48 @@
                   <p>주문 목록과 공정별 소요 시간 데이터를 분석해 일정을 생성하고 충돌을 자동 조율합니다.</p>
                   <ul class="feature-bullets">
                     <li>공장동(A~G)별 생산 라인 분할 배치</li>
-                    <li>주간/월간 간트 차트 실시간 렌더링</li>
-                    <li>장비 오버랩 및 인력 부족 경고 실시간 알림</li>
+                    <li>실시간 자동 스케줄 매칭 및 최적화</li>
+                    <li>장비 오버랩 및 충돌 자동 우회 배치 기능</li>
                   </ul>
                   <div class="pane-action-bar">
                     <button class="btn btn-primary" id="btn-generate-schedule-demo">AI 스케줄링 실행</button>
                   </div>
                 </div>
-                <div class="pane-visual">
-                  <img src="assets/factory_scheduling.png" alt="일정 자동 생성 개념도" class="sim-image">
+                <div class="pane-visual timeline-visual">
+                  
+                  <!-- Dynamic Timeline Gantt Grid -->
+                  <div class="timeline-container" id="timeline-container">
+                    <div class="timeline-grid-header">
+                      <div class="time-label">09:00</div>
+                      <div class="time-label">11:00</div>
+                      <div class="time-label">13:00</div>
+                      <div class="time-label">15:00</div>
+                    </div>
+                    <div class="timeline-rows" id="timeline-rows-container">
+                      <!-- Row 1 -->
+                      <div class="timeline-row">
+                        <div class="row-header">Etcher #03</div>
+                        <div class="row-cells" id="row-etcher">
+                          <!-- Dynamic blocks will be generated here -->
+                        </div>
+                      </div>
+                      <!-- Row 2 -->
+                      <div class="timeline-row">
+                        <div class="row-header">Cleaner #01</div>
+                        <div class="row-cells" id="row-cleaner">
+                          <!-- Dynamic blocks will be generated here -->
+                        </div>
+                      </div>
+                      <!-- Row 3 -->
+                      <div class="timeline-row">
+                        <div class="row-header">Marker #05</div>
+                        <div class="row-cells" id="row-marker">
+                          <!-- Dynamic blocks will be generated here -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="live-status-card" id="schedule-status-card">
                     <div class="pulse-indicator green"></div>
                     <span id="schedule-status-text">대기 중: 스케줄링 준비 완료</span>
@@ -253,35 +286,53 @@
               </div>
             </div>
 
-            <!-- Tab Content 2: Chatbot Simulator -->
+            <!-- Tab Content 2: Chatbot Simulator (Split PDF View) -->
             <div class="sim-content-pane" id="chatbot-content">
               <div class="pane-split">
                 <div class="pane-desc">
                   <h3>사내 지침 기반 Vector RAG 챗봇</h3>
-                  <p>업로드된 기기 지침서, 안전 매뉴얼 등에서 질문에 맞는 부분을 추출하여 근거 중심의 신뢰할 수 있는 답변을 반환합니다.</p>
+                  <p>업로드된 기기 지침서에서 질문에 맞는 단락을 추출하고 해당 원본 매뉴얼을 함께 시각화합니다.</p>
                   <ul class="feature-bullets">
-                    <li>Cloudflare R2에 업로드된 문서 자동 동기화</li>
-                    <li>자연어 처리를 통한 초고속 매뉴얼 임베딩 및 검색</li>
-                    <li>가짜 답변(Hallucination) 방지를 위한 출처 문서 링크 제공</li>
+                    <li>매뉴얼 PDF 자동 임베딩 동기화</li>
+                    <li>출처 클릭 시 지침 매뉴얼 페이지 바로가기</li>
+                    <li>자연어 처리를 통한 가용 수칙 실시간 응답</li>
                   </ul>
                   <div class="pane-action-bar">
                     <button class="btn btn-primary" id="btn-ask-ai-demo">AI에게 기기 점검 수칙 질문하기</button>
                   </div>
                 </div>
-                <div class="pane-visual">
-                  <div class="chat-simulator">
-                    <div class="chat-header">
-                      <div class="chat-avatar">AI</div>
-                      <div>
-                        <div class="chat-name">안전관리 지원 어시스턴트</div>
-                        <div class="chat-status">Active (Vector Store Synced)</div>
+                
+                <div class="pane-visual split-chatbot-visual">
+                  <div class="chat-simulator-left">
+                    <div class="chat-simulator">
+                      <div class="chat-header">
+                        <div class="chat-avatar">AI</div>
+                        <div>
+                          <div class="chat-name">안전관리 지원 어시스턴트</div>
+                          <div class="chat-status">Active (Vector Store Synced)</div>
+                        </div>
+                      </div>
+                      <div class="chat-messages" id="chat-messages-container">
+                        <div class="message system">AI 챗봇 시뮬레이터가 활성화되었습니다.</div>
                       </div>
                     </div>
-                    <div class="chat-messages" id="chat-messages-container">
-                      <div class="message system">AI 챗봇 시뮬레이터가 활성화되었습니다.</div>
+                  </div>
+                  
+                  <div class="doc-viewer-right" id="doc-viewer-panel">
+                    <div class="doc-viewer-header">
+                      <span class="doc-icon">📄</span>
+                      <span class="doc-title" id="doc-viewer-title">식각설비 정비 지침서 L23.pdf</span>
+                    </div>
+                    <div class="doc-viewer-content" id="doc-viewer-text-content">
+                      <div class="doc-page-num">Page 125</div>
+                      <p class="doc-paragraph"><strong>[식각 챔버 클리닝 및 안전 해제 요령]</strong></p>
+                      <p class="doc-paragraph" id="pdf-clause-1">1. 식각 작업 완료 후 고압 라인 접지를 체결하고 챔버 잔여 가스를 진공 퍼지 처리한다.</p>
+                      <p class="doc-paragraph highlightable" id="pdf-clause-2">2. 기기 내부 유독성 화학 물질 배출을 위해 세정 작업을 착수할 시, 챔버 압력이 5Pa 이하 상태에 도달하기 전까지 챔버 도어를 개방하는 행위를 전면 금지한다.</p>
+                      <p class="doc-paragraph highlightable" id="pdf-clause-3">3. 질소(N2) 가스를 완전히 공급하여 대기압(1013hPa) 평형 상태를 도달했는지 확인한 뒤 차단 밸브를 여십시오.</p>
                     </div>
                   </div>
                 </div>
+
               </div>
             </div>
 
@@ -332,7 +383,7 @@
   </section>
 
   <!-- Clean Inquiry Footer Banner -->
-  <section class="contact-section" id="contact">
+  <section class="contact-section border-grid" id="contact">
     <div class="container contact-container">
       <div class="contact-card">
         <span class="badge">Inquiry & consultation</span>
@@ -394,7 +445,7 @@
   </div>
 
   <!-- Footer -->
-  <footer>
+  <footer class="border-grid">
     <div class="container footer-container">
       <div class="footer-brand">
         <span class="logo-text">Linea</span>

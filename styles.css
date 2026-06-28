@@ -633,7 +633,7 @@ header.scrolled .header-container {
 
 .pane-split {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: 1fr 1.15fr;
   gap: 30px;
   height: 100%;
   align-items: center;
@@ -682,6 +682,131 @@ header.scrolled .header-container {
   border-radius: 4px;
 }
 
+/* ─── 7.1. Dynamic Timeline Gantt Simulator Styles ────────────────────────── */
+.timeline-visual {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.timeline-container {
+  flex: 1;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  box-shadow: var(--shadow-subtle);
+}
+
+.timeline-grid-header {
+  display: flex;
+  padding-left: 90px;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 8px;
+}
+
+.time-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--text-light);
+  font-weight: 700;
+  width: 50px;
+  text-align: center;
+}
+
+.timeline-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.timeline-row {
+  display: flex;
+  align-items: center;
+  height: 38px;
+}
+
+.row-header {
+  width: 90px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--text-main);
+  text-align: left;
+}
+
+.row-cells {
+  flex: 1;
+  height: 100%;
+  border-left: 1px dashed var(--border-light);
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  gap: 10px;
+  position: relative;
+}
+
+.timeline-block {
+  height: 30px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  box-shadow: var(--shadow-subtle);
+  animation: slideInBlock 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: left;
+}
+
+@keyframes slideInBlock {
+  from { transform: scaleX(0); opacity: 0; }
+  to { transform: scaleX(1); opacity: 1; }
+}
+
+.block-blue {
+  background: #e0f2fe;
+  border: 1px solid #bae6fd;
+  color: #0369a1;
+  width: 90px;
+}
+
+.block-green {
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+  width: 100px;
+}
+
+.block-orange {
+  background: #ffedd5;
+  border: 1px solid #fed7aa;
+  color: #c2410c;
+  width: 80px;
+}
+
+.block-conflict {
+  border: 2px solid #ef4444;
+  background: #fee2e2;
+  color: #b91c1c;
+  width: 90px;
+  animation: pulseConflict 0.5s ease infinite alternate;
+}
+
+@keyframes pulseConflict {
+  from { border-color: #ef4444; box-shadow: 0 0 4px rgba(239, 68, 68, 0.5); }
+  to { border-color: #fca5a5; box-shadow: 0 0 12px rgba(239, 68, 68, 0.8); }
+}
+
 /* Status overlay inside simulator */
 .live-status-card {
   position: absolute;
@@ -698,6 +823,7 @@ header.scrolled .header-container {
   font-weight: 600;
   color: var(--text-main);
   box-shadow: var(--shadow-subtle);
+  z-index: 10;
 }
 
 .pulse-indicator {
@@ -717,6 +843,87 @@ header.scrolled .header-container {
   box-shadow: 0 0 8px #f59e0b;
 }
 
+/* ─── 7.2. Split Chatbot & Document Viewer Styles ────────────────────────── */
+.split-chatbot-visual {
+  display: grid !important;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 0;
+  height: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  align-items: stretch;
+}
+
+.chat-simulator-left {
+  border-right: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  height: 100%;
+}
+
+.doc-viewer-right {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.doc-viewer-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.doc-icon {
+  font-size: 0.95rem;
+}
+
+.doc-title {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.doc-viewer-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  text-align: left;
+}
+
+.doc-page-num {
+  text-align: right;
+  font-size: 0.65rem;
+  color: var(--text-light);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.doc-paragraph {
+  margin-bottom: 10px;
+}
+
+.doc-paragraph.highlightable {
+  padding: 2px 4px;
+  border-radius: 2px;
+  transition: var(--transition-smooth);
+}
+
+.doc-paragraph.highlighted {
+  background: rgba(255, 77, 46, 0.08);
+  border-left: 2px solid var(--color-accent);
+  padding-left: 6px;
+}
+
 /* Chat Simulator Styling */
 .chat-simulator {
   width: 100%;
@@ -724,8 +931,6 @@ header.scrolled .header-container {
   display: flex;
   flex-direction: column;
   background: #ffffff;
-  border: 1px solid var(--border-light);
-  border-radius: 4px;
 }
 
 .chat-header {
@@ -777,6 +982,7 @@ header.scrolled .header-container {
   padding: 10px 14px;
   border-radius: 6px;
   line-height: 1.45;
+  text-align: left;
 }
 
 .message.user {
@@ -1251,5 +1457,52 @@ footer {
   .footer-links {
     gap: 40px;
     flex-wrap: wrap;
+  }
+}
+
+/* ─── 12. Cross-Secting Grid Outlines (towards-style layout) ─────────────── */
+.border-grid {
+  border-bottom: 1px solid var(--border-light);
+}
+
+@media (min-width: 1025px) {
+  .hero-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .hero-content {
+    padding-right: 50px;
+    border-right: 1px solid var(--border-light);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-mockup {
+    padding-left: 50px;
+  }
+  
+  .about-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 0;
+  }
+  .about-text {
+    padding-right: 60px;
+    border-right: 1px solid var(--border-light);
+  }
+  .about-image-wrapper {
+    padding-left: 60px;
+  }
+  
+  .features-sticky-container {
+    grid-template-columns: 440px 1fr;
+    gap: 0;
+  }
+  .features-left-col {
+    padding-right: 60px;
+    border-right: 1px solid var(--border-light);
+  }
+  .features-right-col {
+    padding-left: 80px;
   }
 }

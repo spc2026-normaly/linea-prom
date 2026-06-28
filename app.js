@@ -57,11 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ─── 4. AI Scheduling Generator Simulator ────────────────────────────── */
+  /* ─── 4. AI Scheduling Generator Simulator (Dynamic Timeline Grid) ──────── */
   const btnGenerateSchedule = document.getElementById('btn-generate-schedule-demo');
   const scheduleStatusCard = document.getElementById('schedule-status-card');
   const scheduleStatusText = document.getElementById('schedule-status-text');
   const pulseIndicator = scheduleStatusCard.querySelector('.pulse-indicator');
+
+  // Timeline Row Selectors
+  const rowEtcher = document.getElementById('row-etcher');
+  const rowCleaner = document.getElementById('row-cleaner');
+  const rowMarker = document.getElementById('row-marker');
 
   let isSchedulingRunning = false;
 
@@ -70,38 +75,86 @@ document.addEventListener('DOMContentLoaded', () => {
     isSchedulingRunning = true;
     btnGenerateSchedule.disabled = true;
     
+    // Clear previous timeline blocks
+    rowEtcher.innerHTML = '';
+    rowCleaner.innerHTML = '';
+    rowMarker.innerHTML = '';
+
     // Step 1: Loading
     pulseIndicator.className = 'pulse-indicator yellow';
-    scheduleStatusText.textContent = '주문 및 장비 마스터 데이터 읽는 중...';
+    scheduleStatusText.textContent = '마스터 데이터 및 주문 적재 중...';
 
     setTimeout(() => {
-      // Step 2: AI Orchestrator Running
-      scheduleStatusText.textContent = 'AI 최적화 엔진 동작 중 (점검 주기 4종 필터링)...';
+      // Step 2: Place initial non-conflicting schedules
+      scheduleStatusText.textContent = 'AI 최적화 엔진 동작 중: 설비 배치 및 Roster 매핑...';
       
-      setTimeout(() => {
-        // Step 3: Success
-        pulseIndicator.className = 'pulse-indicator green';
-        scheduleStatusText.textContent = '배치 성공! 신규 48건 양산 일정 저장 완료.';
-        btnGenerateSchedule.disabled = false;
-        isSchedulingRunning = false;
-        
-        // Show success notification toast
-        showMockToast('🎉 양산 일정이 성공적으로 생성되었습니다.');
-      }, 1500);
+      // Add first Batch blocks
+      const block1 = document.createElement('div');
+      block1.className = 'timeline-block block-blue';
+      block1.textContent = 'Batch #101';
+      rowEtcher.appendChild(block1);
 
-    }, 1000);
+      const block2 = document.createElement('div');
+      block2.className = 'timeline-block block-green';
+      block2.textContent = 'Batch #102';
+      rowCleaner.appendChild(block2);
+
+      setTimeout(() => {
+        // Step 3: Add overlapping conflict schedule
+        scheduleStatusText.textContent = '장비 가용 상태 검증 중: 중복 가동(Conflict) 위험 감지...';
+        
+        const blockConflict = document.createElement('div');
+        blockConflict.className = 'timeline-block block-conflict';
+        blockConflict.id = 'temp-conflict-block';
+        blockConflict.textContent = 'Batch #103';
+        rowEtcher.appendChild(blockConflict);
+
+        setTimeout(() => {
+          // Step 4: Warn and trigger bypass/relocation algorithm
+          scheduleStatusText.textContent = '충돌 경고: Etcher #03 동시 배정 감지! 우회 최적화 탐색...';
+
+          setTimeout(() => {
+            // Step 5: Resolve Conflict and move to Marker #05 row
+            scheduleStatusText.textContent = '최적화 성공: Cleaner #01 및 Marker #05 교차 배치 완료.';
+            
+            // Remove conflict block from Row 1
+            const tempBlock = document.getElementById('temp-conflict-block');
+            if (tempBlock) tempBlock.remove();
+
+            // Add resolved block to Marker row
+            const blockResolved = document.createElement('div');
+            blockResolved.className = 'timeline-block block-orange';
+            blockResolved.textContent = 'Batch #103 (우회)';
+            rowMarker.appendChild(blockResolved);
+
+            pulseIndicator.className = 'pulse-indicator green';
+            btnGenerateSchedule.disabled = false;
+            isSchedulingRunning = false;
+            
+            showMockToast('🎉 Linea 엔진이 장비 충돌을 감지하고 자동 재배치를 완료했습니다.');
+          }, 1500);
+
+        }, 1500);
+
+      }, 1000);
+
+    }, 800);
   });
 
-  /* ─── 5. Typewriter RAG Chatbot Simulator ───────────────────────────────── */
+  /* ─── 5. Typewriter RAG Chatbot Simulator (Split PDF Highlighting) ───────── */
   const btnAskAI = document.getElementById('btn-ask-ai-demo');
   const chatContainer = document.getElementById('chat-messages-container');
+
+  // PDF Document Viewer Paragraphs
+  const pdfClause2 = document.getElementById('pdf-clause-2');
+  const pdfClause3 = document.getElementById('pdf-clause-3');
 
   let isChatbotRunning = false;
 
   const dialogue = [
-    { type: 'user', text: '건식 식각기(Dry Etcher #03) 점검 작업 시 특별한 주의 사항이 기재되어 있어? 찾아서 가르쳐줘.' },
-    { type: 'system', text: 'Vector DB에서 가용 설비 및 기기 매뉴얼 문서를 검색 중...' },
-    { type: 'bot', text: '기기 지침서에 따르면, 식각기 챔버 세정 및 정비 시 <strong>챔버 압력이 5Pa 이하</strong>가 되기 전까지 도어를 수동 개방하지 마십시오. 질소 가스를 완전 히 공급하여 대기압(1013hPa) 평형 상태를 도달했는지 확인한 뒤 차단 밸브를 여셔야 화학 가스 누출 및 화상 위험을 방지할 수 있습니다. <br><br><a href="#" class="chat-source-link" onclick="event.preventDefault(); alert(\'실제 어플리케이션에서는 R2 스토리지에 업로드된 해당 매뉴얼 PDF의 125페이지로 바로 연동됩니다.\');">출처: 식각설비 정비 지침서 L23.pdf#page=125</a>' }
+    { type: 'user', text: '건식 식각기(Dry Etcher #03) 세정 작업 시 주의해야 할 챔버 압력 수칙을 매뉴얼에서 찾아줘.' },
+    { type: 'system', text: 'Vector DB에서 식각기 지침 매뉴얼 텍스트 추출 중...' },
+    { type: 'bot', text: '식각설비 지침서에 따르면, 식각기 챔버 세정 착수 시 <strong>챔버 압력이 5Pa 이하</strong>가 되기 전까지 챔버 도어의 수동 개방을 금지합니다. 또한 화학 누출 방지를 위해 질소 가스를 완전히 공급해 대기압(1013hPa) 평형 상태를 도달했는지 확인한 뒤 차단 밸브를 여셔야 합니다. <br><br><a href="#" class="chat-source-link" id="pdf-cite-trigger">출처: 식각설비 정비 지침서 L23.pdf#page=125</a>' }
   ];
 
   function startChatbotSimulator(force = false) {
@@ -109,8 +162,10 @@ document.addEventListener('DOMContentLoaded', () => {
     isChatbotRunning = true;
     btnAskAI.disabled = true;
 
-    // Reset container
+    // Reset container and document highlights
     chatContainer.innerHTML = '';
+    pdfClause2.classList.remove('highlighted');
+    pdfClause3.classList.remove('highlighted');
 
     let step = 0;
     
@@ -118,6 +173,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (step >= dialogue.length) {
         btnAskAI.disabled = false;
         isChatbotRunning = false;
+        
+        // Add click listener to citation link for user manual highlight
+        const citeLink = document.getElementById('pdf-cite-trigger');
+        if (citeLink) {
+          citeLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            highlightPdfClauses();
+          });
+        }
         return;
       }
 
@@ -130,14 +194,14 @@ document.addEventListener('DOMContentLoaded', () => {
         chatContainer.appendChild(msgElem);
         chatContainer.scrollTop = chatContainer.scrollHeight;
         step++;
-        setTimeout(runNextStep, 1500);
+        setTimeout(runNextStep, 1200);
       } else if (currentMsg.type === 'user') {
         msgElem.className = 'message user';
         msgElem.textContent = currentMsg.text;
         chatContainer.appendChild(msgElem);
         chatContainer.scrollTop = chatContainer.scrollHeight;
         step++;
-        setTimeout(runNextStep, 1000);
+        setTimeout(runNextStep, 800);
       } else if (currentMsg.type === 'bot') {
         msgElem.className = 'message bot';
         chatContainer.appendChild(msgElem);
@@ -145,13 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Typewriter effect
         let index = 0;
-        const speed = 25; // ms per char
+        const speed = 20; // ms per char
         const rawHtml = currentMsg.text;
         
-        // Simple HTML-aware character printing
         function typeWriter() {
           if (index < rawHtml.length) {
-            // Check if we are encountering an HTML tag to output instantly
             if (rawHtml.charAt(index) === '<') {
               const tagEnd = rawHtml.indexOf('>', index);
               if (tagEnd !== -1) {
@@ -168,8 +230,10 @@ document.addEventListener('DOMContentLoaded', () => {
             chatContainer.scrollTop = chatContainer.scrollHeight;
             setTimeout(typeWriter, speed);
           } else {
+            // Highlighting document viewer clause on typewriter finish!
+            highlightPdfClauses();
             step++;
-            setTimeout(runNextStep, 1000);
+            setTimeout(runNextStep, 800);
           }
         }
         typeWriter();
@@ -177,6 +241,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     runNextStep();
+  }
+
+  function highlightPdfClauses() {
+    pdfClause2.classList.add('highlighted');
+    pdfClause3.classList.add('highlighted');
+    
+    // Smooth scroll to the highlighted part
+    const docContent = document.getElementById('doc-viewer-text-content');
+    if (docContent) {
+      docContent.scrollTo({
+        top: pdfClause2.offsetTop - 50,
+        behavior: 'smooth'
+      });
+    }
   }
 
   btnAskAI.addEventListener('click', () => {
