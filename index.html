@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI 기반의 스마트 팩토리 양산 일정 관리 솔루션 Linea. 인터랙티브 간트 차트, RAG 안전 관리 챗봇, 장비 정비 주기를 연동한 최적의 공정 배정을 경험해 보세요.">
+  <meta name="keywords" content="Linea, 생산관리, 스마트팩토리, 간트차트, AI 챗봇, RAG, 일정관리, 공장 최적화">
+  <meta name="author" content="Linea Smart Solutions">
+  <title>Linea | AI 기반 스마트 제조 공정 최적화 솔루션</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Minimalist Sticky Header -->
+  <header id="header">
+    <div class="container header-container">
+      <a href="#" class="logo" id="logo-link">
+        <span class="logo-text">Linea</span>
+      </a>
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#about" class="nav-link" id="nav-about">제품 가치</a>
+        <a href="#features" class="nav-link" id="nav-features">주요 기능</a>
+        <a href="#simulator" class="nav-link" id="nav-simulator">기능 체험</a>
+        <a href="#contact" class="nav-link nav-contact-btn" id="nav-contact-cta">도입 문의</a>
+      </nav>
+      <button class="mobile-toggle" id="mobile-menu-toggle" aria-label="메뉴 열기">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="badge" id="hero-badge">AI-Powered Factory Automation</div>
+        <h1 id="hero-main-title">AI 협동으로 실현하는<br>스마트 제조 일정 최적화</h1>
+        <p class="hero-desc">인터랙티브 간트 차트, 규정 및 매뉴얼 RAG 챗봇, 실시간 장비 가용성 검증을 하나로 연결하여 공장 생산 효율을 최대 40% 향상시킵니다.</p>
+        <div class="hero-ctas">
+          <a href="#simulator" class="btn btn-primary" id="hero-cta-simulate">기능 시뮬레이션</a>
+          <a href="#features" class="btn btn-outline" id="hero-cta-features">자세히 알아보기</a>
+        </div>
+      </div>
+      <div class="hero-mockup" id="hero-mockup-wrapper">
+        <div class="mockup-frame">
+          <div class="mockup-header">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="mockup-title">Linea Smart Dashboard</span>
+          </div>
+          <img src="assets/hero_dashboard.png" alt="스마트 팩토리 스케줄러 대시보드 화면" class="mockup-image" id="hero-dashboard-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business Value & Intro Section -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <span class="badge badge-secondary">Product Value</span>
+          <h2>Linea 도입을 통한 디지털 트윈 양산 일정 관리 효과</h2>
+          <p>생산 스케줄링은 모든 제조업의 중추입니다. 그러나 기기 점검 누락, 인력 배치 충돌, 규정 해석 오류로 인한 병목 현상은 매년 기업에 막대한 리스크를 제공합니다.</p>
+          <p>Linea는 데이터를 유기적으로 연결하여 생산 스케줄 수립 시간을 단축하고, 무재해 달성 및 기기 가동 효율 향상을 이끌어냅니다.</p>
+          
+          <div class="stat-highlights">
+            <div class="stat-card">
+              <h4>+40%</h4>
+              <p>스케줄링 수립 속도 향상</p>
+            </div>
+            <div class="stat-card">
+              <h4>0건</h4>
+              <p>설비 중복 배치 오류</p>
+            </div>
+            <div class="stat-card">
+              <h4>100%</h4>
+              <p>안전 수칙 정보 획득률</p>
+            </div>
+          </div>
+        </div>
+        <div class="about-image-wrapper">
+          <img src="assets/ai_chatbot.png" alt="AI 연계 안전 및 일정 최적화" class="about-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Features Grid (Towards.co.kr style side-by-side scrolling) -->
+  <section class="features-section" id="features">
+    <div class="container features-sticky-container">
+      <!-- Left Column: Sticky Title -->
+      <div class="features-left-col">
+        <span class="badge">Core Modules</span>
+        <h2 class="sticky-title">복잡하지 않아요.<br>생산 현장의 병목을<br><span class="highlight">AI가 해결</span>합니다.</h2>
+        <p class="sticky-subtitle">주문 접수부터 가용 기기 체크, 현장 안전 지침 조회까지 모든 과정이 단 하나의 스케줄링 허브에 동기화됩니다.</p>
+      </div>
+
+      <!-- Right Column: Scrolling Detailed Cards -->
+      <div class="features-right-col">
+        
+        <!-- Feature 1 -->
+        <div class="feature-detail-block" id="feat-gantt">
+          <div class="feat-num">01</div>
+          <h3 class="feat-eng">AI Gantt Scheduler</h3>
+          <h4 class="feat-kor">간트 차트 기반의 자동 스케줄링 조율</h4>
+          <p class="feat-desc">
+            Next.js 기반의 드래그 앤 드롭 프론트엔드와 FastAPI 백엔드가 실시간으로 양방향 통신하여 생산 일정을 계획합니다. 월간, 주간, 일간 간트 뷰를 제공하며, 작업 순서 조정 시 백엔드 스케줄 매칭 알고리즘이 동작해 라인 부하를 체크합니다.
+          </p>
+          <ul class="feat-bullets">
+            <li><strong>일정 중복 충돌 검증</strong>: 동일 시간대에 하나의 설비에 두 개 이상의 생산 Batch가 중첩 배정되는 예외를 사전에 방지합니다.</li>
+            <li><strong>공장동 및 주문 필터링</strong>: 전체 공장동(A~G)별 및 주문번호별로 일정을 그룹화하여 병목 현상이 발생한 라인을 원클릭으로 격리할 수 있습니다.</li>
+          </ul>
+          <div class="tech-tags">
+            <span class="tag">Next.js 15</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">Conflict Engine</span>
+            <span class="tag">PostgreSQL ORM</span>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-detail-block" id="feat-rag">
+          <div class="feat-num">02</div>
+          <h3 class="feat-eng">AI RAG Safety Chatbot</h3>
+          <h4 class="feat-kor">사내 지침서 및 설비 매뉴얼 RAG 검색</h4>
+          <p class="feat-desc">
+            공장 관리자나 작업원이 기기의 주의 사항이나 가동 매뉴얼을 찾아보느라 일정을 지연시킬 필요가 없습니다. R2 스토리지에 지침 PDF 파일을 올리는 즉시 백엔드에서 텍스트를 청킹(Chunking) 및 임베딩 처리하여 Vector DB에 동기화합니다.
+          </p>
+          <ul class="feat-bullets">
+            <li><strong>출처 기반 질의응답</strong>: 챗봇에 자연어로 질문하면 임베딩 벡터 가중치가 가장 높은 세그먼트를 추출해 답변과 함께 원본 PDF 매뉴얼 페이지 링크를 제공합니다.</li>
+            <li><strong>Cloudflare R2 연동</strong>: 스토리지 비용을 절감하는 클라우드 연동으로 최신 규정 파일이 업로드되는 즉시 사내 데이터가 자동 임베딩 갱신됩니다.</li>
+          </ul>
+          <div class="tech-tags">
+            <span class="tag">PostgreSQL pgvector</span>
+            <span class="tag">Cloudflare R2 Sync</span>
+            <span class="tag">LLM Embedding</span>
+            <span class="tag">Semantic Search</span>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-detail-block" id="feat-roster">
+          <div class="feat-num">03</div>
+          <h3 class="feat-eng">Shift & Qualifications Guard</h3>
+          <h4 class="feat-kor">작업원 자격 요건 검증 및 조 편성</h4>
+          <p class="feat-desc">
+            일정 배정 단계에서 해당 공정을 가동하기 위해 필수적으로 갖춰야 할 인력 자격 스펙을 분석합니다. 독성 화학 가스 주입 라인이나 고전압 설비 등 특수 라인에 미인증 작업자나 교육 미이수 근로자가 배치되지 않도록 방어 로직이 구동됩니다.
+          </p>
+          <ul class="feat-bullets">
+            <li><strong>역할 기반 권한 제어 (RBAC)</strong>: 사원(Staff), 조장(Leader), 관리자(Admin) 권한에 따라 일정 수정 권한과 중요 문서 다운로드 접근 범위를 철저히 통제합니다.</li>
+            <li><strong>날짜별 출근 현황 연계</strong>: 작업 로스터 캘린더와 매핑하여 휴가자 또는 부재 중인 근무조 조원을 공정에 배정하지 않도록 실시간 동기화합니다.</li>
+          </ul>
+          <div class="tech-tags">
+            <span class="tag">RBAC Authorization</span>
+            <span class="tag">Shift Rota Roster</span>
+            <span class="tag">Qualifications Verification</span>
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-detail-block" id="feat-equipment">
+          <div class="feat-num">04</div>
+          <h3 class="feat-eng">Equipment Health Tracker</h3>
+          <h4 class="feat-kor">정기 점검 주기 연동 가용성 추적</h4>
+          <p class="feat-desc">
+            모든 양산 기기의 작동 모드(가동 중, 유휴, 수리 중, 점검 필요)와 사전에 정의된 예방 보수(PM) 정기 점검일을 데이터베이스에서 통합 관리합니다. 일정을 짜는 도중 점검일이 도래하거나 경과된 장비가 감지되면, 해당 슬롯의 작업 배치를 불허합니다.
+          </p>
+          <ul class="feat-bullets">
+            <li><strong>설비 건전성 경고(Health Warning)</strong>: 가동 주기가 만료에 임박한(D-7 이내) 장비는 간트 차트와 기기 패널 상에 노란색/빨간색 경고를 표시해 가시성을 높입니다.</li>
+            <li><strong>공정 전환 병목 차단</strong>: 장비 오작동으로 인한 긴급 라인 정지 시간을 최소화하여 예정된 양산 납기 준수율을 98% 이상 보장합니다.</li>
+          </ul>
+          <div class="tech-tags">
+            <span class="tag">Preventive Maintenance</span>
+            <span class="tag">State Monitor Logs</span>
+            <span class="tag">Downtime Minimization</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Live Simulator Section -->
+  <section class="simulator-section" id="simulator">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Interactive Experience</span>
+        <h2 class="section-title">주요 화면 시뮬레이터</h2>
+        <p class="section-subtitle">실제 Linea 애플리케이션의 핵심 기능을 웹에서 미리 경험해 보세요.</p>
+      </div>
+
+      <div class="simulator-container">
+        <!-- Tab Selector Sidebar -->
+        <div class="simulator-tabs">
+          <button class="sim-tab-btn active" id="sim-tab-schedule" data-target="schedule-content">
+            <span class="tab-icon">📅</span>
+            <span class="tab-label">AI 양산 계획 수립</span>
+          </button>
+          <button class="sim-tab-btn" id="sim-tab-chatbot" data-target="chatbot-content">
+            <span class="tab-icon">💬</span>
+            <span class="tab-label">RAG 매뉴얼 질의응답</span>
+          </button>
+          <button class="sim-tab-btn" id="sim-tab-equipment" data-target="equipment-content">
+            <span class="tab-icon">⚙️</span>
+            <span class="tab-label">설비 모니터링</span>
+          </button>
+        </div>
+
+        <!-- Simulator Screen Viewport -->
+        <div class="simulator-viewport">
+          <div class="mockup-header">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="mockup-url">https://linea-scheduler.internal/dashboard</span>
+          </div>
+          
+          <div class="simulator-screen-content">
+            
+            <!-- Tab Content 1: Schedule Generator Simulator -->
+            <div class="sim-content-pane active" id="schedule-content">
+              <div class="pane-split">
+                <div class="pane-desc">
+                  <h3>Linea AI 양산 일정 자동 배치</h3>
+                  <p>주문 목록과 공정별 소요 시간 데이터를 분석해 일정을 생성하고 충돌을 자동 조율합니다.</p>
+                  <ul class="feature-bullets">
+                    <li>공장동(A~G)별 생산 라인 분할 배치</li>
+                    <li>주간/월간 간트 차트 실시간 렌더링</li>
+                    <li>장비 오버랩 및 인력 부족 경고 실시간 알림</li>
+                  </ul>
+                  <div class="pane-action-bar">
+                    <button class="btn btn-primary" id="btn-generate-schedule-demo">AI 스케줄링 실행</button>
+                  </div>
+                </div>
+                <div class="pane-visual">
+                  <img src="assets/factory_scheduling.png" alt="일정 자동 생성 개념도" class="sim-image">
+                  <div class="live-status-card" id="schedule-status-card">
+                    <div class="pulse-indicator green"></div>
+                    <span id="schedule-status-text">대기 중: 스케줄링 준비 완료</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab Content 2: Chatbot Simulator -->
+            <div class="sim-content-pane" id="chatbot-content">
+              <div class="pane-split">
+                <div class="pane-desc">
+                  <h3>사내 지침 기반 Vector RAG 챗봇</h3>
+                  <p>업로드된 기기 지침서, 안전 매뉴얼 등에서 질문에 맞는 부분을 추출하여 근거 중심의 신뢰할 수 있는 답변을 반환합니다.</p>
+                  <ul class="feature-bullets">
+                    <li>Cloudflare R2에 업로드된 문서 자동 동기화</li>
+                    <li>자연어 처리를 통한 초고속 매뉴얼 임베딩 및 검색</li>
+                    <li>가짜 답변(Hallucination) 방지를 위한 출처 문서 링크 제공</li>
+                  </ul>
+                  <div class="pane-action-bar">
+                    <button class="btn btn-primary" id="btn-ask-ai-demo">AI에게 기기 점검 수칙 질문하기</button>
+                  </div>
+                </div>
+                <div class="pane-visual">
+                  <div class="chat-simulator">
+                    <div class="chat-header">
+                      <div class="chat-avatar">AI</div>
+                      <div>
+                        <div class="chat-name">안전관리 지원 어시스턴트</div>
+                        <div class="chat-status">Active (Vector Store Synced)</div>
+                      </div>
+                    </div>
+                    <div class="chat-messages" id="chat-messages-container">
+                      <div class="message system">AI 챗봇 시뮬레이터가 활성화되었습니다.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab Content 3: Equipment Monitor Simulator -->
+            <div class="sim-content-pane" id="equipment-content">
+              <div class="pane-split">
+                <div class="pane-desc">
+                  <h3>실시간 기기 건전성 및 가용성 체크</h3>
+                  <p>스케줄링 설계 시 가용한 장비 대수를 판단하고, 정기 기기 점검 주기가 다가오는 기기를 시각적으로 경고합니다.</p>
+                  <ul class="feature-bullets">
+                    <li>설비 가동 상태 모니터링 (정상, 점검 필요)</li>
+                    <li>점검 주기 기반 다음 점검일 카운트다운 알림</li>
+                    <li>장비 캘린더 연동으로 동일 기기 다중 배치 방지</li>
+                  </ul>
+                </div>
+                <div class="pane-visual">
+                  <div class="equipment-simulator">
+                    <div class="eq-row-card">
+                      <div class="eq-info">
+                        <strong>반도체 건식 식각기 (Dry Etcher #03)</strong>
+                        <span>점검 주기: 90일 | 잔여: 4일 (임박)</span>
+                      </div>
+                      <span class="status-badge warning">점검 필요</span>
+                    </div>
+                    <div class="eq-row-card">
+                      <div class="eq-info">
+                        <strong>초정밀 세정기 (Wet Cleaner #01)</strong>
+                        <span>점검 주기: 60일 | 잔여: 42일</span>
+                      </div>
+                      <span class="status-badge success">정상 가동</span>
+                    </div>
+                    <div class="eq-row-card">
+                      <div class="eq-info">
+                        <strong>레이저 마커 (Laser Marker #05)</strong>
+                        <span>점검 주기: 30일 | 잔여: 19일</span>
+                      </div>
+                      <span class="status-badge success">정상 가동</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clean Inquiry Footer Banner -->
+  <section class="contact-section" id="contact">
+    <div class="container contact-container">
+      <div class="contact-card">
+        <span class="badge">Inquiry & consultation</span>
+        <h2>스마트 팩토리 스케줄러 Linea 도입 상담</h2>
+        <p class="contact-intro">
+          우리 공장 라인과 장비 대수, 교대 근무 Roster에 최적화된 맞춤형 솔루션을 검토해 드립니다. <br>
+          아래 연락처 혹은 문의 양식을 통해 궁금한 점을 공유해 주세요.
+        </p>
+        <div class="contact-channels">
+          <div class="channel-item">
+            <span class="channel-icon">📧</span>
+            <div class="channel-text">
+              <strong>이메일 도입 문의</strong>
+              <a href="mailto:support@spc-solutions.com">support@spc-solutions.com</a>
+            </div>
+          </div>
+          <div class="channel-item">
+            <span class="channel-icon">📞</span>
+            <div class="channel-text">
+              <strong>기술 지원 콜센터</strong>
+              <a href="tel:1588-0000">1588-0000 (평일 09:00 - 18:00)</a>
+            </div>
+          </div>
+        </div>
+        
+        <form class="contact-form" id="demo-request-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="user-name">이름 / 담당자명 *</label>
+              <input type="text" id="user-name" name="name" required placeholder="홍길동">
+            </div>
+            <div class="form-group">
+              <label for="company-name">회사명 / 소속 *</label>
+              <input type="text" id="company-name" name="company" required placeholder="(주)스마트제조">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="user-email">이메일 주소 *</label>
+            <input type="email" id="user-email" name="email" required placeholder="contact@company.com">
+          </div>
+          <div class="form-group">
+            <label for="user-message">상세 문의 사항 (장비 대수, 공장 업종 등)</label>
+            <textarea id="user-message" name="message" rows="3" placeholder="예: 반도체 부품 가공 공장으로 장비 12대 가동 중입니다. 도입 일정을 메일로 공유 희망합니다."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="form-submit-btn">도입 검토자료 요청하기</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay" id="success-modal">
+    <div class="modal-card">
+      <div class="modal-success-icon">✓</div>
+      <h2>접수가 완료되었습니다!</h2>
+      <p>작성해주신 내용이 Linea 기술지원 팀으로 전달되었습니다. 기재해 주신 연락처로 24시간 내에 전문 스케줄링 컨설턴트가 도입 상담 일정을 안내해 드리겠습니다.</p>
+      <button class="btn btn-primary" id="modal-close-btn">확인</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <span class="logo-text">Linea</span>
+        <p>AI 및 데이터 분석으로 제조업의 새로운 미래를 선도하는 스마트 팩토리 전문 팀입니다.</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h4>제품 정보</h4>
+          <a href="#about">제품 도입 가치</a>
+          <a href="#features">주요 기능 상세</a>
+          <a href="#simulator">제품 시뮬레이터</a>
+        </div>
+        <div>
+          <h4>지원 및 상담</h4>
+          <a href="#contact">도입 문의 양식</a>
+          <a href="mailto:support@spc-solutions.com">이메일 문의</a>
+          <a href="tel:1588-0000">고객센터 1588-0000</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Linea. All rights reserved. | 본 페이지는 스마트 팩토리 양산 스케줄러 Linea 홍보용 정적 웹페이지입니다.</p>
+    </div>
+  </footer>
+
+  <!-- JS Link -->
+  <script src="app.js"></script>
+</body>
+</html>
