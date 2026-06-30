@@ -15,22 +15,136 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* ─── 2. Mobile Menu Toggle ────────────────────────────────────────────── */
+  /* ─── 2. Mobile Menu Toggle & Nav Underline (Native Snapping Navigation) ─ */
   const menuToggle = document.getElementById('mobile-menu-toggle');
   const navMenu = document.getElementById('nav-menu');
   const navLinks = document.querySelectorAll('.nav-link');
+
+  // Dynamic sliding nav underline
+  const underline = document.createElement('span');
+  underline.className = 'nav-underline';
+  navMenu.appendChild(underline);
+
+  function updateUnderline(targetLink) {
+    if (!targetLink || targetLink.classList.contains('nav-contact-btn') || window.innerWidth <= 768) {
+      underline.style.opacity = '0';
+      underline.style.width = '0';
+      return;
+    }
+    const rect = targetLink.getBoundingClientRect();
+    const menuRect = navMenu.getBoundingClientRect();
+    const left = rect.left - menuRect.left + navMenu.scrollLeft;
+    
+    underline.style.width = `${rect.width}px`;
+    underline.style.transform = `translateX(${left}px)`;
+    underline.style.opacity = '1';
+  }
+
+  // Hover animations for sliding underline
+  navLinks.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+      if (!link.classList.contains('nav-contact-btn')) {
+        updateUnderline(link);
+      }
+    });
+
+    link.addEventListener('mouseleave', () => {
+      const activeLink = document.querySelector('.nav-link.active');
+      if (activeLink) {
+        updateUnderline(activeLink);
+      } else {
+        underline.style.opacity = '0';
+        underline.style.width = '0';
+      }
+    });
+
+    // Close mobile menu and set active class on click
+    link.addEventListener('click', function() {
+      menuToggle.classList.remove('active');
+      navMenu.classList.remove('active');
+      
+      if (!this.classList.contains('nav-contact-btn')) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        updateUnderline(this);
+      }
+    });
+  });
 
   menuToggle.addEventListener('click', () => {
     menuToggle.classList.toggle('active');
     navMenu.classList.toggle('active');
   });
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      menuToggle.classList.remove('active');
-      navMenu.classList.remove('active');
-    });
+  // Position underline on active nav item on load/resize
+  setTimeout(() => {
+    const activeLink = document.querySelector('.nav-link.active');
+    if (activeLink) updateUnderline(activeLink);
+  }, 100);
+
+  window.addEventListener('resize', () => {
+    const activeLink = document.querySelector('.nav-link.active');
+    if (activeLink) updateUnderline(activeLink);
   });
+
+  /* ─── 2.1. Interactive Page Loader & Liquid Wave Parallax Background ────── */
+  const loader = document.getElementById('page-loader');
+  const loaderBg = document.querySelector('.loader-bg-pattern');
+  const blobs = document.querySelectorAll('.glow-blob');
+
+  // Click anywhere on the loading screen to enter the main page
+  if (loader) {
+    loader.addEventListener('click', () => {
+      loader.classList.add('fade-out');
+      setTimeout(() => {
+        loader.remove();
+      }, 800);
+    });
+  }
+
+  // Optimized Mouse Move Parallax using requestAnimationFrame and Lerp Easing
+  let mouseX = 0, mouseY = 0;
+  let currentX = 0, currentY = 0;
+  const easeFactor = 0.08; // Smooth interpolation speed
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function animateParallax() {
+    if (window.innerWidth > 1024) {
+      // Lerp calculations for physical sway feel
+      currentX += (mouseX - currentX) * easeFactor;
+      currentY += (mouseY - currentY) * easeFactor;
+
+      const xPercent = (currentX / window.innerWidth) - 0.5;
+      const yPercent = (currentY / window.innerHeight) - 0.5;
+
+      // Sway the loading page blueprint grid and wave lines using GPU accelerated translate3d
+      if (loaderBg) {
+        const x = xPercent * 55;
+        const y = yPercent * 55;
+        loaderBg.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.05)`;
+      }
+
+      // Sway the main page ambient blobs using translate3d, rotation and scale scaling
+      blobs.forEach((blob, idx) => {
+        const factor = (idx + 1) * 45;
+        const x = xPercent * factor;
+        const y = yPercent * factor;
+        const rotate = xPercent * (idx + 1) * 12;
+        const scale = 1 + Math.abs(xPercent) * 0.12;
+
+        blob.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotate}deg) scale(${scale})`;
+      });
+    }
+
+    requestAnimationFrame(animateParallax);
+  }
+
+  // Start the render loop
+  requestAnimationFrame(animateParallax);
 
   /* ─── 3. Interactive Simulator Tab Switching ───────────────────────────── */
   const tabButtons = document.querySelectorAll('.sim-tab-btn');
@@ -50,9 +164,11 @@ document.addEventListener('DOMContentLoaded', () => {
         targetPane.classList.add('active');
       }
 
-      // If switching to chatbot, trigger chatbot animation automatically
+      // If switching to chatbot, just ensure welcome instruction is shown if empty
       if (targetId === 'chatbot-content') {
-        startChatbotSimulator(false); // don't force reset unless requested
+        if (!isChatbotRunning && chatContainer.innerHTML.trim() === '') {
+          chatContainer.innerHTML = '<div class="message system">AI 챗봇 시뮬레이터가 활성화되었습니다.<br>좌측의 \'AI에게 질문하기\' 버튼을 눌러 시뮬레이션을 시작해 보세요!</div>';
+        }
       }
     });
   });

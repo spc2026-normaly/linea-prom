@@ -18,6 +18,28 @@
 </head>
 <body>
 
+  <!-- Premium Intro Page Loader (Click Anywhere to Enter, Blue Screen Grid/Wave Parallax) -->
+  <div id="page-loader" class="page-loader">
+    <div class="loader-bg-pattern">
+      <svg class="loader-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="none">
+        <path class="loader-wave wave-1" d="M 0,300 Q 360,180 720,300 T 1440,300" />
+        <path class="loader-wave wave-2" d="M 0,450 Q 360,570 720,450 T 1440,450" />
+        <path class="loader-wave wave-3" d="M 0,600 Q 360,480 720,600 T 1440,600" />
+      </svg>
+    </div>
+    <div class="loader-content">
+      <div class="loader-logo">Linea</div>
+      <div class="loader-hint">화면을 클릭하여 입장하세요</div>
+    </div>
+  </div>
+
+  <!-- Ambient Glow & Parallax Background Blobs -->
+  <div class="ambient-glow" id="ambient-glow">
+    <div class="glow-blob blob-1"></div>
+    <div class="glow-blob blob-2"></div>
+    <div class="glow-blob blob-3"></div>
+  </div>
+
   <!-- Minimalist Sticky Header -->
   <header id="header" class="border-grid">
     <div class="container header-container">
@@ -27,6 +49,7 @@
       <nav class="nav-menu" id="nav-menu">
         <a href="#about" class="nav-link" id="nav-about">제품 가치</a>
         <a href="#features" class="nav-link" id="nav-features">주요 기능</a>
+        <a href="#manual" class="nav-link" id="nav-manual">사용 설명서</a>
         <a href="#simulator" class="nav-link" id="nav-simulator">기능 체험</a>
         <a href="#contact" class="nav-link nav-contact-btn" id="nav-contact-cta">도입 문의</a>
       </nav>
@@ -43,7 +66,7 @@
     <div class="container hero-container">
       <div class="hero-content">
         <div class="badge" id="hero-badge">AI-Powered Factory Automation</div>
-        <h1 id="hero-main-title">AI 협동으로 실현하는<br>스마트 제조 일정 최적화</h1>
+        <h1 id="hero-main-title">AI로 더욱 스마트한<br>양산 일정 최적화 서비스</h1>
         <p class="hero-desc">인터랙티브 간트 차트, 규정 및 매뉴얼 RAG 챗봇, 실시간 장비 가용성 검증을 하나로 연결하여 공장 생산 효율을 최대 40% 향상시킵니다.</p>
         <div class="hero-ctas">
           <a href="#simulator" class="btn btn-primary" id="hero-cta-simulate">기능 시뮬레이션</a>
@@ -178,15 +201,86 @@
           </p>
           <ul class="feat-bullets">
             <li><strong>설비 건전성 경고(Health Warning)</strong>: 가동 주기가 만료에 임박한(D-7 이내) 장비는 간트 차트와 기기 패널 상에 노란색/빨간색 경고를 표시해 가시성을 높입니다.</li>
+            <li><strong>내구도 연동 예방 정비</strong>: 장비별 사용 내구도 N회와 이에 해당하는 휴식 시간 M분을 지정하여, N회 사용 시 M분간의 정비 대기 시간을 스케줄에 자동으로 배치 차단합니다.</li>
             <li><strong>공정 전환 병목 차단</strong>: 장비 오작동으로 인한 긴급 라인 정지 시간을 최소화하여 예정된 양산 납기 준수율을 98% 이상 보장합니다.</li>
           </ul>
           <div class="tech-tags">
             <span class="tag">Preventive Maintenance</span>
+            <span class="tag">Durability Guard</span>
             <span class="tag">State Monitor Logs</span>
             <span class="tag">Downtime Minimization</span>
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- User Manual Section -->
+  <section class="manual-section border-grid" id="manual">
+    <div class="container">
+      <div class="manual-header">
+        <span class="badge badge-secondary">User Guide</span>
+        <h2 class="manual-title">Linea 스케줄러 사용 설명서</h2>
+        <p class="manual-subtitle">생산 계획 수립부터 AI 협업까지, 스마트 공장 운영을 위한 핵심 가이드</p>
+      </div>
+
+      <div class="manual-grid">
+        <!-- Manual Step 1 -->
+        <div class="manual-card">
+          <div class="manual-num">01</div>
+          <h3>AI 양산 스케줄 수립 및 미세 조율</h3>
+          <p>
+            FastAPI 백엔드의 AI 스케줄링 최적화 엔진을 통해 자동으로 생산 일정을 배정하고 Gantt 차트 상에 시각화합니다.
+          </p>
+          <ul class="manual-bullets-list">
+            <li><strong>스케줄링 실행</strong>: '스케줄링 실행' 클릭 시 설비 점검일, 교대 근무 Roster, 내구도 등을 분석해 충돌을 자동 우회 배치합니다.</li>
+            <li><strong>간트 차트 제어</strong>: 드래그 앤 드롭으로 세부 일정을 수동 미세 조정할 수 있습니다.</li>
+            <li><strong>동적 필터</strong>: 전체 공장동별(A~G) 및 주문번호별로 일정을 그룹화하여 병목 라인을 모니터링합니다.</li>
+          </ul>
+        </div>
+
+        <!-- Manual Step 2 -->
+        <div class="manual-card">
+          <div class="manual-num">02</div>
+          <h3>장비 내구도 및 예방 정비 관리</h3>
+          <p>
+            반도체 건식 식각기(Dry Etcher) 등 주요 설비의 가동 이력 및 건전성을 추적하고 예방 정비 계획을 연동합니다.
+          </p>
+          <ul class="manual-bullets-list">
+            <li><strong>내구도(N회) & 휴식(M분)</strong>: 장비별 N회 가동 시 M분 동안 휴식(정비 시간)을 가지도록 차단 슬롯을 스케줄러 상에 확보하여 장비 수명을 연장합니다.</li>
+            <li><strong>점검 경고 알림</strong>: 차기 정기 점검일이 다가오는 기기(D-7 이내)는 간트 차트와 알림 패널에 노란색/빨간색으로 즉시 통보합니다.</li>
+            <li><strong>CSV 벌크 등록</strong>: CSV/TSV 파일을 통해 장비 리스트와 점검 주기를 일괄 업로드하고 실시간 동기화합니다.</li>
+          </ul>
+        </div>
+
+        <!-- Manual Step 3 -->
+        <div class="manual-card">
+          <div class="manual-num">03</div>
+          <h3>작업원 자격 검증 및 교대조 편성</h3>
+          <p>
+            특수 위험 공정에 적합한 자격을 갖춘 작업원을 안전하게 배정하고 인력 배치 충돌을 사전에 차단합니다.
+          </p>
+          <ul class="manual-bullets-list">
+            <li><strong>안전 교육 만료일 추적</strong>: 안전 교육 이수 여부 및 만료일을 분석하여, 만료 상태이거나 교육 미이수자가 고위험 공정에 배치되지 않도록 자동 차단합니다.</li>
+            <li><strong>근무 Roster Rota 연계</strong>: 날짜별 출근 현황과 연계하여 부재자나 휴가 중인 인력을 스케줄에서 사전에 격리 배제합니다.</li>
+            <li><strong>권한별 관리 (RBAC)</strong>: 사원, 조장, 관리자 레벨에 맞추어 스케줄 변경 권한을 엄격히 통제합니다.</li>
+          </ul>
+        </div>
+
+        <!-- Manual Step 4 -->
+        <div class="manual-card">
+          <div class="manual-num">04</div>
+          <h3>안전 지침 RAG 임베딩 & AI 챗봇</h3>
+          <p>
+            사내 안전 수칙 및 설비 조작 매뉴얼 PDF를 기반으로 한 지능형 Q&A 어시스턴트를 활용합니다.
+          </p>
+          <ul class="manual-bullets-list">
+            <li><strong>매뉴얼 RAG 질의응답</strong>: 챗봇에 일상어로 질문 시 매뉴얼 내용에 기초하여 안전 요령과 챔버 클리닝 압력 수칙을 답변합니다.</li>
+            <li><strong>출처 페이지 바로가기</strong>: AI 답변과 매칭되는 규정의 PDF 원본 문서 페이지 링크를 제공하여 실시간 팩트 체크를 돕습니다.</li>
+            <li><strong>클라우드 R2 동기화</strong>: R2 스토리지에 매뉴얼 파일 업로드 즉시 백엔드에서 텍스트 분할(Chunking) 및 임베딩을 갱신합니다.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -313,7 +407,7 @@
                         </div>
                       </div>
                       <div class="chat-messages" id="chat-messages-container">
-                        <div class="message system">AI 챗봇 시뮬레이터가 활성화되었습니다.</div>
+                        <div class="message system">AI 챗봇 시뮬레이터가 활성화되었습니다.<br>좌측의 'AI에게 질문하기' 버튼을 눌러 시뮬레이션을 시작해 보세요!</div>
                       </div>
                     </div>
                   </div>
